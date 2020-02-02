@@ -3,9 +3,9 @@ class Student
   attr_reader :id
 
   def initialize (name, grade, id = nil)
-    @name = name;
-    @grade = grade;
-    @id = id;
+    @name = name
+    @grade = grade
+    @id = id
   end
 
   def self.create_table
@@ -34,6 +34,12 @@ class Student
         VALUES (?, ?)
         SQL
     DB[:conn].execute(sql, self.name, self.grade)
+
+    sql_row = <<-SQL 
+            SELECT last_insert_rowid()
+            SQL
+    id = DB[:conn].execute(sql_row)
+    @id = id
   end
 
 end
