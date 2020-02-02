@@ -38,7 +38,7 @@ class Student
     sql_row = <<-SQL
             SELECT last_insert_rowid()
             SQL
-    id = DB[:conn].execute(sql_row)
+    id = DB[:conn].execute(sql_row).flatten
     @id = id
   end
 
